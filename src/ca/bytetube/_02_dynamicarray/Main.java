@@ -4,12 +4,17 @@ package ca.bytetube._02_dynamicarray;
 public class Main {
     public static void main(String[] args) {
         ArrayList<Integer> arrayList = new ArrayList<>();
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < 11; i++) {
             arrayList.add(i);
         }
 
-        arrayList.clear();
-        arrayList.add(10);
+//       while (!arrayList.isEmpty()){
+//           arrayList.remove(0);
+//       }
+        arrayList.set(1, null);
+
+
+        System.out.println(arrayList.indexOf(null));
 
 
 //        for (int i = 0; i < 30; i++) {
