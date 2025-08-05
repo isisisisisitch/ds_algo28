@@ -1,4 +1,4 @@
-package ca.bytetube._00_leetcode;
+package ca.bytetube._00_leetcode._array;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,6 +1,4 @@
-package ca.bytetube._00_leetcode;
-
-import java.util.Arrays;
+package ca.bytetube._00_leetcode._array;
 
 /**
  * https://leetcode.com/problems/sort-colors/
