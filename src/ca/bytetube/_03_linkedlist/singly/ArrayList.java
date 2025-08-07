@@ -1,4 +1,6 @@
-package ca.bytetube._03_linkedlist;
+package ca.bytetube._03_linkedlist.singly;
+
+import ca.bytetube._03_linkedlist.AbstractList;
 
 public class ArrayList<E> extends AbstractList<E> {
 

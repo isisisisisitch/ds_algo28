@@ -1,6 +1,8 @@
-package ca.bytetube._03_linkedlist;
+package ca.bytetube._03_linkedlist.singly;
 
-public class LinkedList<E> extends AbstractList<E> {
+import ca.bytetube._03_linkedlist.AbstractList;
+
+public class SinglyLinkedList<E> extends AbstractList<E> {
     Node<E> first;
 
     @Override
@@ -32,9 +34,7 @@ public class LinkedList<E> extends AbstractList<E> {
             prevNode.next = new Node<>(element, prevNode.next);
         }
 
-
         size++;
-
     }
 
     @Override
@@ -45,6 +45,7 @@ public class LinkedList<E> extends AbstractList<E> {
 
     @Override
     public E remove(int index) {
+        rangeCheck(index);
         Node<E> removed = first;
         if (index == 0) {
             first = first.next;
