@@ -7,9 +7,28 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Stack;
 
-public class BinaryTree<E> implements BinaryTreeInfo {
+public abstract class BinaryTree<E> implements BinaryTreeInfo {
     protected Node<E> root;
     protected int size;
+
+    public int size() {
+        return size;
+    }
+
+    public boolean isEmpty() {
+        return size == 0;
+    }
+
+    public void clear() {
+        root = null;
+        size = 0;
+    }
+
+    public abstract void add(E element);
+
+    public abstract void remove(E element);
+
+    public abstract boolean contains(E element);
 
     public void preOrderTraversal() {
         preOrderTraversal0(root);
@@ -169,6 +188,32 @@ public class BinaryTree<E> implements BinaryTreeInfo {
         return true;
     }
 
+    protected Node<E> predecessor(Node<E> node) {
+        if (node == null) return null;
+        //1.node.left != null
+        Node<E> p = node.left;
+        if (p != null) {
+            while (p.right != null) p = p.right;
+            return p;
+        }
+        //2.node.left == null && node.parent != null
+        while (node.parent != null && node == node.parent.left) node = node.parent;
+        return node.parent;
+    }
+
+    protected Node<E> successor(Node<E> node) {
+        if (node == null) return null;
+        //1.node.right != null
+        Node<E> p = node.right;
+        if (p != null) {
+            while (p.left != null) p = p.left;
+            return p;
+        }
+        //2.node.right == null && node.parent != null
+        while (node.parent != null && node == node.parent.right) node = node.parent;
+        return node.parent;
+    }
+
     public static class Node<E> {
         E element;
         Node<E> left;
@@ -223,30 +268,5 @@ public class BinaryTree<E> implements BinaryTreeInfo {
         return myNode.element + "_p(" + parentString + ")";
     }
 
-    public static void main(String[] args) {
-        BinaryTree<Integer> binaryTree = new BinaryTree<>();
-        Node<Integer> root = new Node<>(7);
-        root.left = new Node<>(4);
-        root.right = new Node<>(9);
-        root.left.left = new Node<>(2);
-        root.left.right = new Node<>(5);
-        root.right.left = new Node<>(8);
-        root.right.right = new Node<>(11);
-        root.left.left.left = new Node<>(1);
-        root.left.left.right = new Node<>(3);
-        root.right.right.left = new Node<>(10);
-        root.right.right.right = new Node<>(12);
-        //  binaryTree.preOrderTraversal0(root);
-        //  System.out.println();
-        // binaryTree.postOrderTraversal0(root);
-//        System.out.println();
-//        binaryTree.postOrderTraversal(root);
-//        binaryTree.levelOrderTraversal(root);
-        //System.out.println(binaryTree.height0(root));
-       // System.out.println(binaryTree.height(root));
-        System.out.println(binaryTree.isCBT(   root.right  ));
-
-
-    }
 
 }

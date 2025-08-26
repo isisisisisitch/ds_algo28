@@ -1,8 +1,21 @@
 package ca.bytetube._06_tree;
 
-public class Person implements Comparable<Person>{
+public class Person implements Comparable<Person> {
     int age;
     String name;
+
+    public Person(int age, String name) {
+        this.age = age;
+        this.name = name;
+    }
+
+    @Override
+    public String toString() {
+        return "Person{" +
+                "age=" + age +
+                ", name='" + name + '\'' +
+                '}';
+    }
 
     @Override
     public int compareTo(Person p) {
