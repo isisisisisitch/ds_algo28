@@ -83,6 +83,9 @@ public class BinarySearchTree<E> extends BinaryTree<E> {
 
     }
 
+    protected void afterRemove(Node<E> node) {
+    }
+
     private void remove(Node<E> node) {
         size--;
         //Delete node with degree 2
@@ -101,6 +104,7 @@ public class BinarySearchTree<E> extends BinaryTree<E> {
             else {
                 if (node == node.parent.left) node.parent.left = replacement;
                 else node.parent.right = replacement;
+                afterRemove(node);
             }
         }
 
@@ -110,6 +114,7 @@ public class BinarySearchTree<E> extends BinaryTree<E> {
         else {
             if (node == node.parent.left) node.parent.left = null;
             else node.parent.right = null;
+            afterRemove(node);
         }
 
     }

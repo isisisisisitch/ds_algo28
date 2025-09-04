@@ -19,8 +19,14 @@ public class Main {
         avl.add(9);
 
         avl.add(11);
-        BinaryTrees.println(avl);
+        // BinaryTrees.println(avl);
         avl.add(12);
+        BinaryTrees.println(avl);
+        avl.remove(8);
+        avl.remove(7);
+        avl.remove(9);
+        BinaryTrees.println(avl);
+        avl.remove(11);
         BinaryTrees.println(avl);
         //avl.add(1);
         //BinaryTrees.println(avl);

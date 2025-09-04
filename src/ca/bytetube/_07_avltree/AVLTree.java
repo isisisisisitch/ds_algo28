@@ -21,11 +21,23 @@ public class AVLTree<E> extends BinarySearchTree<E> {
             if (isBalanced(node)) {
                 calculateHeight(node);
             } else {
-                rebalance(node);
+                rebalance2(node);
                 break;
             }
         }
 
+    }
+
+    @Override
+    protected void afterRemove(Node<E> node) {
+        while ((node = node.parent) != null) {
+            if (isBalanced(node)) {
+                calculateHeight(node);
+            } else {
+                rebalance2(node);
+                //break;
+            }
+        }
     }
 
     private void calculateHeight(Node<E> node) {
@@ -51,6 +63,55 @@ public class AVLTree<E> extends BinarySearchTree<E> {
 
             }
         }
+
+    }
+
+    private void rebalance2(Node<E> grand) {
+        Node<E> parent = ((AVLNode<E>) grand).tallerChild();
+        Node<E> node = ((AVLNode<E>) parent).tallerChild();
+        if (parent.isLeftChild()) {//L
+            if (node.isLeftChild()) {//L
+                rotation(grand, node.left, node, node.right, parent, parent.right, grand, grand.right);
+            } else {//R
+                rotation(grand, parent.left, parent, node.left, node, node.right, grand, grand.right);
+            }
+        } else {//R
+            if (node.isLeftChild()) {//L
+                rotation(grand, grand.left, grand, node.left, node, node.right, parent, parent.right);
+            } else {//R
+                rotation(grand, grand.left, grand, parent.left, parent, node.left, node, node.right);
+
+            }
+        }
+
+    }
+
+    private void rotation(Node<E> r, Node<E> a, Node<E> b, Node<E> c, Node<E> d, Node<E> e, Node<E> f, Node<E> g) {
+        d.parent = r.parent;
+        if (r.isLeftChild()) r.parent.left = d;
+        else if (r.isRightChild()) r.parent.right = d;
+        else root = d;
+
+        //a---b---c
+        b.left = a;
+        if (a != null) a.parent = b;
+        b.right = c;
+        if (c != null) c.parent = b;
+        calculateHeight(b);
+
+        //e---f---g
+        f.left = e;
+        if (e != null) e.parent = f;
+        f.right = g;
+        if (g != null) g.parent = f;
+        calculateHeight(f);
+
+        //b---d---f
+        d.left = b;
+        b.parent = d;
+        d.right = f;
+        f.parent = d;
+        calculateHeight(d);
 
     }
 
@@ -128,6 +189,5 @@ public class AVLTree<E> extends BinarySearchTree<E> {
             return this.isLeftChild() ? left : right;
         }
     }
-
 
 }
