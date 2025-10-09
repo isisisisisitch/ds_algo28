@@ -8,6 +8,18 @@ package ca.bytetube._12_recursion;
 
 public class Fib {
 
+    public int fib(int n) {
+        if (n <= 1) return n;
+        return fib(n, 0, 1);
+    }
+
+    private int fib(int n, int a, int b) {
+        if (n <= 1) return b;
+
+        return fib(n - 1, b, a + b);
+    }
+
+
     public static int fib6(int n) {
         if (n <= 1) return n;
         int a = 0;
