@@ -1,14 +1,33 @@
 package ca.bytetube._16_dp;
 
+import java.util.Arrays;
+
 public class CoinChange {
     public static void main(String[] args) {
-        System.out.println(coinChange(41));
-        System.out.println(coinChange2(41));
-        System.out.println(coinChange1(41));
+//        System.out.println(coinChange3(41));
+//        System.out.println(coinChange2(41));
+//        System.out.println(coinChange1(41));
+        System.out.println(Integer.MAX_VALUE + 1);
+    }
+
+    public int coinChange(int[] coins, int amount) {
+        int[] dp = new int[amount + 1];//0
+        for (int i = 1; i <= amount; i++) {
+            int min = Integer.MAX_VALUE;
+            for (int coin : coins) {
+                if (i < coin || dp[i - coin] == -1) continue;
+                min = Math.min(dp[i - coin], min);
+            }
+            if (min == Integer.MAX_VALUE) dp[i] = -1;
+            else dp[i] = min + 1;
+
+        }
+
+        return dp[amount];
     }
 
 
-    public static int coinChange(int n) {
+    public static int coinChange3(int n) {
         int[] dp = new int[n + 1];//0
         for (int i = 1; i <= n; i++) {
             int min = Integer.MAX_VALUE - 1;
