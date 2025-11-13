@@ -1,0 +1,51 @@
+package ca.bytetube._17_sort.cmp;
+
+public class HeapSort<T extends Comparable<T>> extends Sort<T> {
+    private int size;
+
+    @Override
+    protected void sort() {
+        //① heapify
+        size = array.length;
+        for (int i = (size >> 1) - 1; i >= 0; i--) {
+            siftDown(i);
+        }
+        //② Repeat the following operations
+        //until there is only 1 element in the heap,
+        //Swap the top and tail elements of the heap
+        //Decrease the number of elements
+        //in the heap by 1
+        //Then do siftDown operation on the 0 position
+
+        while (size > 1) {
+            swap(0, --size);
+            siftDown(0);
+        }
+
+    }
+
+    private void siftDown(int index) {
+        T element = array[index];
+        int half = size >> 1;
+        while (index < half) {
+            int childIndex = (index << 1) + 1;
+
+            int rightChildIndex = childIndex + 1;
+            T child = array[childIndex];
+            if (rightChildIndex < size && cmp(array[rightChildIndex], child) > 0) {
+                child = array[childIndex = rightChildIndex];
+            }
+
+            if (cmp(element, child) >= 0) break;
+            array[index] = child;
+            index = childIndex;
+
+
+        }
+
+        array[index] = element;
+
+
+    }
+
+}
