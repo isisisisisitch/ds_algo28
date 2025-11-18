@@ -15,7 +15,8 @@ public class Main {
                 new InsertionSort(),
                 new InsertionSort2(),
                 new InsertionSort3(),
-                new HeapSort()
+                new HeapSort(),
+                new MergeSort()
                 );
     }
 
