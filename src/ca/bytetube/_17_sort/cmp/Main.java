@@ -16,8 +16,10 @@ public class Main {
                 new InsertionSort2(),
                 new InsertionSort3(),
                 new HeapSort(),
-                new MergeSort()
-                );
+                new MergeSort(),
+                new QuickSort(),
+                new ShellSort()
+        );
     }
 
     public static void testSorts(Integer[] array, Sort... sorts) {
