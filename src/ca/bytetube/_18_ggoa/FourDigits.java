@@ -1,6 +1,35 @@
 package ca.bytetube._18_ggoa;
 
 public class FourDigits {
+
+    private static int count = 0;
+    public static int soln(int s) {
+
+        dfs(s, 0, 0);
+
+        return count;
+    }
+
+    public static void dfs(int s, int sum, int index) {
+        if (sum > s) {
+            return;
+        }
+
+        if (index == 4 && sum == s) {
+            count++;
+            return;
+        }
+
+        if (index == 4) {
+            return;
+        }
+
+        for (int i = 0; i <= 9; i++) {
+            dfs(s, sum+i, index+1);
+        }
+
+    }
+
     public static int solution(int S) {
 
         int[][] dp = new int[5][37];
