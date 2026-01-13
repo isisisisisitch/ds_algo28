@@ -1,4 +1,4 @@
-package ca.bytetube._19_mazoa;
+package ca.bytetube._19_amzoa;
 
 public class FindMinimumSum {
     public static void main(String[] args) {

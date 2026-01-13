@@ -1,4 +1,4 @@
-package ca.bytetube._19_mazoa;
+package ca.bytetube._19_amzoa;
 
 import java.util.Arrays;
 import java.util.Collections;
